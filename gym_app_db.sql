@@ -1,3 +1,4 @@
+
 CREATE DATABASE gymAppDB;
 
 USE gymAppDB;
@@ -50,13 +51,21 @@ CREATE TABLE `planing` (
 CREATE TABLE `usuario` (
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
   `nombre` VARCHAR(255),
-  `datos` JSON,
   `rol` INTEGER,
-  `contraseña` VARCHAR(255),
-  `correo` VARCHAR(255),
-  `activo` BOOL,
-  INDEX (`rol`)
+  `password` VARCHAR(255),
+  `correo` VARCHAR(255) UNIQUE,
+  `activo` BOOL
+  
 );
+
+CREATE TABLE datos_usuario (
+  idUsuario INTEGER PRIMARY KEY AUTO_INCREMENT,
+  peso DOUBLE,
+  altura DOUBLE,
+  edad INTEGER,
+  genero ENUM('masculino', 'femenino')
+);
+
 
 CREATE TABLE `roles` (
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -71,6 +80,11 @@ ALTER TABLE `rel_planing_rutina` ADD FOREIGN KEY (`idRutina`) REFERENCES `rutina
 
 ALTER TABLE `rel_rutina_usuario` ADD FOREIGN KEY (`idRutina`) REFERENCES `rutinas` (`id`);
 ALTER TABLE `rel_rutina_usuario` ADD FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`id`);
+
+ALTER TABLE `usuario` ADD CONSTRAINT usuario_roles_FK FOREIGN KEY (`rol`) REFERENCES roles(id);
+ALTER TABLE  `datos_usuario` ADD CONSTRAINT fk_usuario FOREIGN KEY (`idUsuario`) REFERENCES usuario(`id`);
+
+
 
 ALTER TABLE `ejercicios` ADD FOREIGN KEY (`grupo_muscular`) REFERENCES `grupos_musculares` (`id`);
 
