@@ -1,18 +1,29 @@
-# GymApp
+### Endpoints de la API
 
-| METHOD | ENDPOINT                | TOKEN          | ROLE    | DESCRIPTION                  | POST PARAMS                               | RETURNS                                     |
-|--------|-------------------------|----------------|---------|------------------------------|-------------------------------------------|---------------------------------------------|
-| POST   | /auth/signup            | -              | user    | User Signup                  | name, email, password                     | { message: string, result: token }          |
-| POST   | /auth/login             | -              | user    | User Login                   | email, password                           | { message: string, result: token }          |
-| GET    | /users/{userId}         | Bearer {token} | user    | Obtener información de usuario | -                                         | { user: object }                            |
-| PUT    | /users/{userId}         | Bearer {token} | user    | Actualizar información de usuario | username, email, bio                      | { message: string, user: object }           |
-| GET    | /exercises              | Bearer {token} | user    | Listar todos los ejercicios  | -                                         | { exercises: [array of exercises] }         |
-| POST   | /exercises              | Bearer {token} | user    | Crear un nuevo ejercicio     | name, description, category, difficulty   | { message: string, exercise: object }       |
-| PUT    | /exercises/{exerciseId} | Bearer {token} | user    | Actualizar un ejercicio      | name, description, category, difficulty   | { message: string, exercise: object }       |
-| DELETE | /exercises/{exerciseId} | Bearer {token} | user    | Eliminar un ejercicio        | -                                         | { message: string }                         |
-| GET    | /routines               | Bearer {token} | user    | Listar todas las rutinas     | -                                         | { routines: [array of routines] }           |
-| POST   | /routines               | Bearer {token} | user    | Crear una nueva rutina       | name, description, exercises (array)      | { message: string, routine: object }        |
-| PUT    | /routines/{routineId}   | Bearer {token} | user    | Actualizar una rutina        | name, description, exercises (array)      | { message: string, routine: object }        |
-| DELETE | /routines/{routineId}   | Bearer {token} | user    | Eliminar una rutina          | -                                         | { message: string }                         |
-
-
+| Método   | Endpoint                          | Descripción                                           |
+|----------|-----------------------------------|-------------------------------------------------------|
+| `POST`   | `/usuarios`                      | Crea un nuevo usuario.                                |
+| `GET`    | `/usuarios`                      | Obtiene una lista de todos los usuarios.              |
+| `GET`    | `/usuarios/{id}`                 | Obtiene los detalles de un usuario específico.        |
+| `PUT`    | `/usuarios/{id}`                 | Actualiza los detalles de un usuario específico.      |
+| `DELETE` | `/usuarios/{id}`                 | Elimina un usuario específico.                        |
+| `POST`   | `/ejercicios`                    | Crea un nuevo ejercicio.                              |
+| `GET`    | `/ejercicios`                    | Obtiene una lista de todos los ejercicios.            |
+| `GET`    | `/ejercicios/{id}`               | Obtiene los detalles de un ejercicio específico.      |
+| `PUT`    | `/ejercicios/{id}`               | Actualiza los detalles de un ejercicio específico.    |
+| `DELETE` | `/ejercicios/{id}`               | Elimina un ejercicio específico.                      |
+| `POST`   | `/rutinas`                       | Crea una nueva rutina.                                |
+| `GET`    | `/rutinas`                       | Obtiene una lista de todas las rutinas.               |
+| `GET`    | `/rutinas/{id}`                  | Obtiene los detalles de una rutina específica.        |
+| `PUT`    | `/rutinas/{id}`                  | Actualiza los detalles de una rutina específica.      |
+| `DELETE` | `/rutinas/{id}`                  | Elimina una rutina específica.                        |
+| `POST`   | `/planings`                      | Crea un nuevo planing.                                |
+| `GET`    | `/planings`                      | Obtiene una lista de todos los planings.              |
+| `GET`    | `/planings/{id}`                 | Obtiene los detalles de un planing específico.        |
+| `PUT`    | `/planings/{id}`                 | Actualiza los detalles de un planing específica.      |
+| `DELETE` | `/planings/{id}`                 | Elimina un planing específica.                        |
+| `POST`   | `/grupos_musculares`             | Crea un nuevo grupo muscular.                         |
+| `GET`    | `/grupos_musculares`             | Obtiene una lista de todos los grupos musculares.     |
+| `GET`    | `/grupos_musculares/{id}`        | Obtiene los detalles de un grupo muscular específico. |
+| `PUT`    | `/grupos_musculares/{id}`        | Actualiza un grupo muscular específico.               |
+| `DELETE` | `/grupos_musculares/{no}`        | Elimina un grupo muscular específico.                 |
