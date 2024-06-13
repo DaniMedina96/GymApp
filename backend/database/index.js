@@ -19,7 +19,17 @@ catch (error) {
 }
 }
 
+const sycnModels = async () => {
+  try {
+    await connection.sync()
+    console.log('Models synced');
+  } catch (error) {
+    console.log(error);
+  }
+} 
+
 module.exports = {
   connection,
-  checkDB
+  checkDB,
+  sycnModels
 }

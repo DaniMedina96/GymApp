@@ -1,1 +1,5 @@
-const checkDB = require("./database")
+require('dotenv').config()
+
+const { checkDB } = require("./database")
+
+checkDB()
