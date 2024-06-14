@@ -8,7 +8,7 @@ const Ejercicios = connection.define(
       allowNull: false,
     },
     grupo_muscular: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     descripcion: {

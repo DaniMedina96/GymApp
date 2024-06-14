@@ -7,6 +7,7 @@ const connection = new Sequelize(
 {
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
+  logging: false
 });
 
 const checkDB = async () => {
@@ -21,7 +22,7 @@ catch (error) {
 
 const sycnModels = async () => {
   try {
-    await connection.sync()
+    await connection.sync();
     console.log('Models synced');
   } catch (error) {
     console.log(error);
