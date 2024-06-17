@@ -10,6 +10,7 @@ const Usuario = connection.define(
     rol: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: "3"
     },
     password: {
       type: DataTypes.STRING,
