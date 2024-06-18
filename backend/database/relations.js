@@ -4,10 +4,10 @@ const Rutinas = require('../api/models/rutinas.model');
 const Planing = require('../api/models/planing.model');
 const Grupos_musculares = require('../api/models/grupos_musculares.model');
 const Datos_Usuario = require('../api/models/datos_usuario.model');
-const Roles = require('../api/models/roles.model');
+const Roles = require('../api/models/rol.model');
 const Rel_planing_rutina = require('../api/models/rel_planing_rutina.model');
 
-
+ 
 const defineRelations = () => {
     Usuario.hasMany(Rutinas, { foreignKey: "creador" });
     Rutinas.belongsTo(Usuario, { foreignKey: "creador" });
