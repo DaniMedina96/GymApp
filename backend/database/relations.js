@@ -7,7 +7,7 @@ const Datos_Usuario = require('../api/models/datos_usuario.model');
 const Roles = require('../api/models/rol.model');
 const Rel_planing_rutina = require('../api/models/rel_planing_rutina.model');
 
-
+ 
 const defineRelations = () => {
     Usuario.hasMany(Rutinas, { foreignKey: "creador" });
     Rutinas.belongsTo(Usuario, { foreignKey: "creador" });
