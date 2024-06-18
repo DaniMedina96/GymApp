@@ -1,5 +1,5 @@
 const Usuario = require('../api/models/usuario.model');
-const Ejercicio = require('../api/models/ejercicios.model');
+const Ejercicio = require('../api/models/ejercicio.model');
 const Rutinas = require('../api/models/rutinas.model');
 const Planing = require('../api/models/planing.model');
 const Grupos_musculares = require('../api/models/grupos_musculares.model');

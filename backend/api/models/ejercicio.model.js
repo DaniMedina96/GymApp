@@ -17,7 +17,7 @@ const Ejercicios = connection.define(
     },
     imagen: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
