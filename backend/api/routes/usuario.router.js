@@ -9,11 +9,12 @@ const {
     deleteOneUser
 
 }
-= require("../controllers/Usuario.controller")
+= require("../controllers/Usuario.controller");
+const { checkAuth,checkAdmin } = require("../middlewares");
 
 router.post("/", createUser)
 router.get("/:id", getOneUser)
-router.get("/", getAllUsers)
+router.get("/", checkAuth, checkAdmin, getAllUsers)
 router.put("/:id", updateOneUser)
 router.delete("/:id", deleteOneUser)
 
