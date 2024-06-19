@@ -27,3 +27,5 @@
 | `GET`    | `/grupos_musculares/{id}`        | Obtiene los detalles de un grupo muscular específico. |
 | `PUT`    | `/grupos_musculares/{id}`        | Actualiza un grupo muscular específico.               |
 | `DELETE` | `/grupos_musculares/{no}`        | Elimina un grupo muscular específico.                 |
+| `POST`   | `/auth/sigUp`                    | Crea un nuevo usuario y sus datos de usuario.                         |
+| `GET`    | `/auth/logIn`                    | Logea con un usuario pasandole correo y contraseña    |
