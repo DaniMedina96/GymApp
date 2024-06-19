@@ -121,10 +121,29 @@ const createEjercicio =  async (req, res) => {
         });
     }
 }
+
+const addEjercicioToRutina = async (req, res) => {
+    try {
+        const ejercicio = await Ejercicio.findByPk(req.params.id);
+        const rutina = await Rutinas.findByPk(req.params.idRutina);
+        await rutina.addEjercicio(ejercicio);
+        res.status(200).json({
+            message: "Ejercicio added successfully",
+            result: ejercicio
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Error adding Ejercicio",
+            result: error
+        });
+    }
+    
+}
 module.exports = { 
     createEjercicio,
     getOneEjercicio,
     getAllEjercicios,
     updateOneEjercicio,
-    deleteOneEjercicio
+    deleteOneEjercicio,
+    addEjercicioToRutina
 }

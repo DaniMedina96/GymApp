@@ -41,7 +41,7 @@ const getAllDatos_Usuario = async (req, res) => {
     }
 }
 
-const getOneData_Usuario = async (req, res) => {
+const getOneDatos_Usuario = async (req, res) => {
     try {
         const datos_Usuario = await Datos_Usuario.findByPk(
                 req.params.id
@@ -122,7 +122,7 @@ const deleteOneDatos_Usuario = async (req, res) => {
 module.exports = {
     createDatos_Usuario,
     getAllDatos_Usuario,
-    getOneData_Usuario,
+    getOneDatos_Usuario,
     updateOneDatos_Usuario,
     deleteOneDatos_Usuario
 }

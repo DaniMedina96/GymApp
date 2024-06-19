@@ -7,6 +7,7 @@ const rutinaRouter = require("./rutina.router")
 const datos_usuarioRouter = require("./datos_usuario.router")
 const grupo_muscularRouter = require("./grupo_muscular.router")
 const rolRouter = require("./rol.router")
+const authRouter = require("./auth.router")
 
 router.use("/usuarios", usuarioRouter)
 router.use("/rutina", rutinaRouter)
@@ -15,6 +16,7 @@ router.use("/grupo_muscular", grupo_muscularRouter)
 router.use("/rol", rolRouter)
 router.use("/ejercicios", ejercicioRouter)
 router.use("/planings", planingRouter)
+router.use("/auth", authRouter)
 
 
 
