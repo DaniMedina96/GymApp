@@ -17,7 +17,7 @@ router.get("/:id", getOneRutina)
 router.get("/", getAllRutinas)
 router.put("/:id", updateOneRutina)
 router.delete("/:id", deleteOneRutina)
-router.post("/:id/listaEjercicios/", addEjercicioToRutina)
+router.post("/:idEjercicio/:idRutina/listaEjercicios/", addEjercicioToRutina)
 
 
 module.exports = router

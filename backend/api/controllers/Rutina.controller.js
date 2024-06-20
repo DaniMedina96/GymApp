@@ -126,9 +126,9 @@ const deleteOneRutina = async (req, res) => {
 const addEjercicioToRutina = async (req, res) => {
     try {
         const ejercicio = await Ejercicio.findByPk(
-            req.params.id
+            req.params.idEjercicio
         )
-        const rutina = await Rutina.findByPk(3);
+        const rutina = await Rutina.findByPk(req.params.idRutina);
         if(!ejercicio) {
             return res.status(404).json({
                 message: "Ejercicio not found",
