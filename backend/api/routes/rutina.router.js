@@ -6,7 +6,8 @@ const {
     getOneRutina,
     getAllRutinas,
     updateOneRutina,
-    deleteOneRutina
+    deleteOneRutina,
+    addEjercicioToRutina
 
 }
 = require("../controllers/Rutina.controller")
@@ -16,6 +17,7 @@ router.get("/:id", getOneRutina)
 router.get("/", getAllRutinas)
 router.put("/:id", updateOneRutina)
 router.delete("/:id", deleteOneRutina)
+router.post("/:id/listaEjercicios/", addEjercicioToRutina)
 
 
 module.exports = router

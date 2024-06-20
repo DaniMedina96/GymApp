@@ -6,8 +6,8 @@ const {
     getOneEjercicio,
     getAllEjercicios,
     updateOneEjercicio,
-    deleteOneEjercicio,
-    addEjercicioToRutina
+    deleteOneEjercicio
+
 
 }
 = require("../controllers/Ejercicio.controller")
@@ -18,7 +18,7 @@ router.get("/:id", getOneEjercicio)
 router.get("/", getAllEjercicios)
 router.put("/:id", updateOneEjercicio)
 router.delete("/:id", deleteOneEjercicio)
-router.post("/:id/rutina", checkAuth, checkAdmin, addEjercicioToRutina)
+router.post("/:id/rutina", checkAuth, checkAdmin)
 
 
 module.exports = router

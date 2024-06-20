@@ -1,4 +1,5 @@
 const Rutina = require("../models/rutina.model");
+const Ejercicio = require("../models/ejercicio.model");
 const bcrypt = require("bcrypt");
 
 
@@ -7,8 +8,11 @@ const createRutina = async (req, res) => {
     const rutina = await Rutina.create(req.body);
     res.status(201).json({
       message: "Rutina created successfully",
-      result: rutina,
-    });
+      result: rutina
+    }
+    )
+    res.locals.rutina = rutina // add rutina to locals para usarlo mas adelante
+    ;
   } catch (error) {
     res.status(500).json({
       message: "Error creating rutina",
@@ -119,6 +123,31 @@ const deleteOneRutina = async (req, res) => {
     }
 }
 
+const addEjercicioToRutina = async (req, res) => {
+    try {
+        const ejercicio = await Ejercicio.findByPk(
+            req.params.id
+        )
+        const rutina = await Rutina.findByPk(3);
+        if(!ejercicio) {
+            return res.status(404).json({
+                message: "Ejercicio not found",
+                result: ejercicio
+            });
+        }
+        await ejercicio.addRutina(rutina);
+        res.status(200).json({
+            message: "Ejercicio added successfully",
+            result: ejercicio
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "Error adding Ejercicio",
+            result: error
+        });
+    }
+}
+
 
 
 module.exports = {
@@ -126,5 +155,6 @@ module.exports = {
     getOneRutina,
     updateOneRutina,
     deleteOneRutina,
-    createRutina
+    createRutina,
+    addEjercicioToRutina
 }
