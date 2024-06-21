@@ -14,6 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { Link } from "react-router-dom";
 
 
 export default function SideBar() {
@@ -40,16 +41,15 @@ export default function SideBar() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Rutinas', 'Ejercicios', 'Planing'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {['rutinas', 'ejercicios', 'planing'].map((text) => (
+          <Link to={`/${text}`} key={text} style={{ textDecoration: 'none', color: 'black' }}>
+          <ListItem disablePadding>
             <ListItemButton>
-              <ListItemIcon>
-                {/* aqui cambiar iconos */}
-                {displayIcons(text)}
-              </ListItemIcon>
-              <ListItemText primary={text} />
+              <ListItemIcon>{displayIcons(text)}</ListItemIcon>
+              <ListItemText primary={text.toUpperCase()} />
             </ListItemButton>
           </ListItem>
+          </Link>
         ))}
       </List>
       
@@ -57,12 +57,12 @@ export default function SideBar() {
   );
 
 const displayIcons = (text) => {
-    if (text === "Ejercicios") {
+    if (text === "ejercicios") {
         return <FitnessCenterIcon />
-    } else if (text === "Planing") {
+    } else if (text === "planing") {
         return <FitnessCenterIcon />
     }
-    else if (text === "Rutinas") {
+    else if (text === "rutinas") {
         return <MailIcon />
     }
 }
