@@ -9,24 +9,24 @@ const Datos_Usuario = connection.define(
     },
     peso: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+
     },
     altura: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+
     },
     edad: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+
     },
     genero: {
       type: DataTypes.ENUM("masculino", "femenino"),
-      allowNull: true,
+
     },
     imagenPerfil: {
       type: DataTypes.STRING,
 
-      allowNull: true,
+   
 
     },
     
