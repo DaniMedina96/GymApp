@@ -1,8 +1,9 @@
 
-import { Avatar, Button, Container, Grid, Paper, Typography } from '@mui/material';
+
 import './Profile.css';
 import { getUserProfile, getUser} from '../../services/userService';
 import { useEffect, useState } from 'react';
+import UserProfile from '../../components/UserProfile/userProfile';
 
 const Profiles = () => {
   // Datos ficticios del usuario
@@ -57,43 +58,14 @@ console.log(Usuario)
  
 
   // Cálculo del IMC
-  const calculateBMI = (weight, height) => {
-    return (weight / (height * height)).toFixed(2);
-  };
+ 
 
   return (
-    <Container maxWidth="sm">
-      <Paper className="paper">
-        <Avatar alt="Profile Picture" src={user.imagenPerfil} className="avatar" />
-        <Typography variant="h5" gutterBottom>
-          {user.nombre}
-        </Typography>
-        <Typography variant="body1">
-          <strong>Altura:</strong> {user.altura} m
-        </Typography>
-        <Typography variant="body1">
-          <strong>Peso:</strong> {user.peso} kg
-        </Typography>
-        <Typography variant="body1">
-          <strong>Genero:</strong> {user.genero}
-        </Typography>
-        <Typography variant="body1">
-          <strong>IMC:</strong> {calculateBMI(user.peso, user.altura)}
-        </Typography>
-        <Grid container spacing={2} justifyContent="center">
-          <Grid item>
-            <Button variant="contained" color="primary" className="button">
-              Editar Datos de Usuario
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button variant="contained" color="secondary" className="button">
-              Editar Datos de Login
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Container>
+   <div>
+    {
+<UserProfile user={user} />
+    }
+   </div>
   );
 };
 

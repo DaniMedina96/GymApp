@@ -9,8 +9,15 @@ import Button from '@mui/material/Button';
 // import MenuIcon from '@mui/icons-material/Menu';
 import SideBar from "./SideBar/SideBar";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar() {
+  const navigate = useNavigate();
+  const handlelogout = () => {
+    localStorage.clear();
+    navigate("/login")
+  }
+
   return (
     <Box>
       <AppBar position="static">
@@ -29,13 +36,18 @@ export default function ButtonAppBar() {
             Home
           </Typography>
           </Link>
-          <Link to={"/login"}>
-          <Button color="inherit">Login</Button>
-          </Link>
           
-          <Link to={"/signup"}>
-            <Button color="inherit">SignUp</Button>
-          </Link>
+          {
+            localStorage.getItem('token') ? (<Button color="inherit" onClick={handlelogout}>Logout</Button>) : (<Box  >
+              <Link to={"/login"}>
+                <Button color="inherit">Login</Button>
+              </Link>
+              <Link to={"/signup"}>
+                <Button color="inherit">SignUp</Button>
+              </Link>
+            </Box>)
+          }
+
          
 
         </Toolbar>

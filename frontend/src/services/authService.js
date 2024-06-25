@@ -12,8 +12,8 @@ const signUp = async (dataForm) => {
 
         // Save the token and role in local storage
         localStorage.setItem("token", data.token);
-        localStorage.setItem("rol", data.rol);
-        localStorage.setItem("id", data.id);
+        localStorage.setItem("rol", data.result.rol);
+        localStorage.setItem("id", data.result.id);
 
         // Return the response data
         return data;
