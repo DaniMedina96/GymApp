@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import Home from "../pages/Home/Home";
 import Root from "../layouts/main_Layout";
 import NotFound from "../pages/NotFound/NotFound";
@@ -35,15 +35,33 @@ const router = createBrowserRouter(
         },
         {
             path: '/login',
+            // loader: () => {
+            //     if(localStorage.getItem('token')) {
+            //         alert('Ya estas logueado')
+            //         return redirect('/profile')
+            //     }else{
+            //         return null
+            //     }
+            // },
             element: <Login />
         },
+            
+        
         {
             path: '/signup',
             element: <SignUp />
         },
         {
             path: '/profile',
-            element: <Profile />
+        //    loader: () => {
+        //        if(localStorage.getItem('token')) {
+        //            return redirect('/profile')
+        //        }else{
+        //         alert('Debes iniciar sesion')
+        //            return redirect('/login')
+        //        }
+        //    },
+            element: <Profile />,
         },
         
     ]
