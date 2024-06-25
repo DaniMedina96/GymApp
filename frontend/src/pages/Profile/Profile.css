@@ -1,0 +1,22 @@
+/* ProfileStyles.css */
+
+.paper {
+    padding: 24px;
+    /* 3 * 8px */
+    text-align: center;
+    color: rgba(0, 0, 0, 0.87);
+    /* Default text color for light theme */
+}
+
+.avatar {
+    width: 120px;
+    /* 15 * 8px */
+    height: 120px;
+    /* 15 * 8px */
+    margin: auto;
+}
+
+.button {
+    margin: 8px;
+    /* 1 * 8px */
+}

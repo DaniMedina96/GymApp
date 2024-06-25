@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { checkAuth } = require("../middlewares");
 const { 
     createDatos_Usuario,
     getAllDatos_Usuario,
@@ -10,7 +11,7 @@ const {
 
 
 router.post("/", createDatos_Usuario)
-router.get("/:id", getOneDatos_Usuario)
+router.get("/:userId", checkAuth ,getOneDatos_Usuario)
 router.get("/", getAllDatos_Usuario)
 router.put("/:id", updateOneDatos_Usuario)
 router.delete("/:id", deleteOneDatos_Usuario)
