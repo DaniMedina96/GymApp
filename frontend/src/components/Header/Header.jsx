@@ -16,10 +16,28 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <SideBar/>
-          <Typography variant="h6" component="div"  >
-            <Button component={Link} to="" variant="contained" color="primary">HOME</Button>
+          <Link style={{
+            textDecoration: "none",
+            color: "White", // Color del texto
+            padding: "10px 20px", // Espaciado interior
+            borderRadius: "5px", // Bordes redondeados
+            backgroundColor: "blue", // Color de fondo
+            transition: "background-color 0.3s ease", // Transición suave en el cambio de color
+            display: "inline-block", // Para que el padding se aplique correctamente
+          }} to={""}>
+          <Typography variant="h6" component="div" >
+            Home
           </Typography>
+          </Link>
+          <Link to={"/login"}>
           <Button color="inherit">Login</Button>
+          </Link>
+          
+          <Link to={"/signup"}>
+            <Button color="inherit">SignUp</Button>
+          </Link>
+         
+
         </Toolbar>
       </AppBar>
     </Box>

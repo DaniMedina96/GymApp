@@ -24,6 +24,7 @@ const Usuario = connection.define(
     activo: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
+      defaultValue: true
     },
   },
   {

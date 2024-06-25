@@ -23,6 +23,12 @@ const Datos_Usuario = connection.define(
       type: DataTypes.ENUM("masculino", "femenino"),
       allowNull: true,
     },
+    imagenPerfil: {
+      type: DataTypes.STRING,
+
+      allowNull: true,
+
+    },
     
   },
   {

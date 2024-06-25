@@ -43,8 +43,13 @@ const getAllDatos_Usuario = async (req, res) => {
 
 const getOneDatos_Usuario = async (req, res) => {
     try {
-        const datos_Usuario = await Datos_Usuario.findByPk(
-                req.params.id
+        const datos_Usuario = await Datos_Usuario.findOne(
+                {
+                    where: {
+                        idUsuario: req.params.userId
+                    }
+                }
+                
             )
         if (!datos_Usuario) {
             return res.status(404).json({
