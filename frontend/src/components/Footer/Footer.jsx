@@ -1,59 +1,54 @@
-import "./Footer.css"
-
-import { Box, Grid, Container, Typography, Button } from '@mui/material'
+import "./Footer.css";
+import { Box, Grid, Container, Typography, Link } from '@mui/material';
 
 function Footer() {
   const elements = [
     {
-      header: 'Help',
-      links: ['Contact', 'Support', 'Privacy']
+      header: 'Ayuda',
+      links: ['Contacto', 'Soporte']
     },
     {
-      header: 'Account',
-      links: ['Login', 'Register', 'Nuevo']
-    },
-    {
-      header: 'Messages',
-      links: ['Backup', 'History', 'Roll']
+      header: 'Cuenta',
+      links: ['Iniciar Sesión', 'Registrarse']
     }
-  ]
+  ];
 
   function generateFooterElements() {
-    const footerElements = elements.map((column, idx) => {
-      return (
-        <Grid key={idx} item xs={12} md={4}>
-          <Box borderBottom={1}>
-            <Button sx={{ color: 'white', fontWeight: 'bold' }}>
-              {column.header}
-            </Button>
+    return elements.map((column, idx) => (
+      <Grid key={idx} item xs={12} md={6}>
+        <Box borderBottom={1} mb={2}>
+          <Typography variant="h6" className="footer-header">
+            {column.header}
+          </Typography>
+        </Box>
+        {column.links.map((link, idx) => (
+          <Box key={idx} mb={1}>
+            <Link href="#" className="footer-link">
+              {link}
+            </Link>
           </Box>
-          {column.links.map((link, idx) => {
-            return (
-              <Box key={idx}>
-                <Button sx={{ color: 'white' }}>{link}</Button>
-              </Box>
-            )
-          })}
-        </Grid>
-      )
-    })
-    return footerElements
+        ))}
+      </Grid>
+    ));
   }
 
   return (
-    <footer>
-      <Box bgcolor="primary.main" color="white" padding={2}>
+    <footer className="footer">
+      <Box bgcolor="#333" color="white" py={4}>
         <Container>
-          <Grid container columnSpacing={2}>
+          <Grid container spacing={4}>
             {generateFooterElements()}
           </Grid>
         </Container>
       </Box>
-      <Box textAlign={'center'} py={2} m={0} bgcolor="black" color={'white'}>
-        <Typography>© Reboot Academy 2022 - All Rights Reserved</Typography>
+      <Box textAlign="center" py={2} bgcolor="#ff4500" color="white">
+        <Typography variant="body2">
+          © GymApp 2024 - Todos los derechos reservados
+        </Typography>
       </Box>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
+

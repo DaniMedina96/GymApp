@@ -6,11 +6,23 @@ const createRutina = async (req, res) => {
   try {
     const { nombre, creador, amateur, ejercicios } = req.body;
 
+    console.log("Datos recibidos para crear rutina:", req.body);
+
+    // Verificar que el usuario creador exista
+    const usuario = await Usuario.findByPk(creador);
+    if (!usuario) {
+      return res.status(400).json({
+        message: "Usuario creador no encontrado",
+      });
+    }
+
     const nuevaRutina = await Rutina.create({
       nombre,
       creador,
       amateur,
     });
+
+    console.log("Rutina creada:", nuevaRutina);
 
     if (ejercicios && ejercicios.length > 0) {
       const ejerciciosInstances = await Promise.all(
@@ -19,6 +31,8 @@ const createRutina = async (req, res) => {
 
       const ejerciciosValidos = ejerciciosInstances.filter((e) => e != null);
       await nuevaRutina.addEjercicios(ejerciciosValidos);
+
+      console.log("Ejercicios añadidos:", ejerciciosValidos);
     }
 
     res.status(201).json({
@@ -29,7 +43,7 @@ const createRutina = async (req, res) => {
     console.error("Error creating rutina: ", error);
     res.status(500).json({
       message: "Error creating rutina",
-      error: error,
+      error: error.message, // Asegúrate de enviar el mensaje de error para depuración
     });
   }
 };
@@ -38,7 +52,7 @@ const getAllRutinas = async (req, res) => {
   try {
     const rutinas = await Rutina.findAll({
       where: req.query,
-      include: [{ model: Ejercicio, as: "ejercicios" }]
+      include: [{ model: Ejercicio, as: "ejercicios" }],
     });
     if (rutinas.length === 0) {
       return res.status(404).json({
@@ -51,9 +65,10 @@ const getAllRutinas = async (req, res) => {
       result: rutinas,
     });
   } catch (error) {
+    console.error("Error getting all rutinas: ", error);
     res.status(500).json({
       message: "Error getting all rutinas",
-      result: error,
+      result: error.message,
     });
   }
 };
@@ -74,9 +89,10 @@ const getOneRutina = async (req, res) => {
       result: rutina,
     });
   } catch (error) {
+    console.error("Error retrieving rutina: ", error);
     res.status(500).json({
       message: "Error retrieving rutina",
-      result: error,
+      result: error.message,
     });
   }
 };
@@ -99,9 +115,10 @@ const updateOneRutina = async (req, res) => {
       result: req.body,
     });
   } catch (error) {
+    console.error("Error updating rutina: ", error);
     res.status(500).json({
       message: "Error updating rutina",
-      result: error,
+      result: error.message,
     });
   }
 };
@@ -124,9 +141,10 @@ const deleteOneRutina = async (req, res) => {
       result: result,
     });
   } catch (error) {
+    console.error("Error deleting rutina: ", error);
     res.status(500).json({
       message: "Error deleting rutina",
-      result: error,
+      result: error.message,
     });
   }
 };
@@ -147,9 +165,10 @@ const addEjercicioToRutina = async (req, res) => {
       result: ejercicio,
     });
   } catch (error) {
+    console.error("Error adding Ejercicio: ", error);
     res.status(500).json({
       message: "Error adding Ejercicio",
-      result: error,
+      result: error.message,
     });
   }
 };

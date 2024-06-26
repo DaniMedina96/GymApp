@@ -1,0 +1,35 @@
+.planing-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: white;
+    /* Fondo blanco */
+    color: #ff4500;
+    /* Texto en el mismo color que el fondo del footer */
+    text-align: center;
+}
+
+.planing-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ff4500;
+    /* Título en el mismo color que el fondo del footer */
+}
+
+.planing-content {
+    background-color: #ff4500;
+    /* Fondo en el mismo color que el footer-bottom */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+}
+
+.planing-message {
+    font-size: 1.5rem;
+    color: white;
+    /* Texto blanco */
+}
+}
