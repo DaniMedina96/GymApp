@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import SideBar from "./SideBar/SideBar";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -10,48 +11,44 @@ import "./Header.css";
 
 export default function ButtonAppBar() {
   const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.clear();
     navigate("/login");
   };
 
-  const buttonStyle = {
-    color: 'white',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    backgroundColor: '#ff4500', // Usando el color del footer-bottom
-    transition: 'background-color 0.3s ease',
-    textTransform: 'none',
-    '&:hover': {
-      backgroundColor: '#ffcc00', // Usando el color hover del footer-link
-    }
-  };
-
-  const linkStyle = {
-    textDecoration: 'none',
-    color: 'white'
+  const handleProfileClick = () => {
+    navigate("/profile");
   };
 
   return (
     <Box>
-      <AppBar position="static" sx={{ backgroundColor: '#ff4500' }}>
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <AppBar position="static" className="app-bar">
+        <Toolbar className="toolbar">
           <SideBar />
-          <Link to="/" style={linkStyle}>
-            <Typography variant="h6" component="div" sx={{ color: 'white' }}>
+          <Link to="/" className="link">
+            <Typography variant="h6" component="div">
               Home
             </Typography>
           </Link>
-          <Box>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
             {localStorage.getItem('token') ? (
-              <Button sx={buttonStyle} onClick={handleLogout}>Logout</Button>
+              <>
+                <Button className="button" onClick={handleLogout}>Logout</Button>
+                <Avatar
+                  alt="Profile Picture"
+                  src="https://via.placeholder.com/150" // Aquí puedes colocar la URL de la imagen de perfil del usuario
+                  className="avatar"
+                  onClick={handleProfileClick}
+                />
+              </>
             ) : (
               <>
-                <Link to="/login" style={{ textDecoration: 'none' }}>
-                  <Button sx={buttonStyle}>Login</Button>
+                <Link to="/login" className="link">
+                  <Button className="button">Login</Button>
                 </Link>
-                <Link to="/signup" style={{ textDecoration: 'none', marginLeft: '10px' }}>
-                  <Button sx={buttonStyle}>SignUp</Button>
+                <Link to="/signup" className="link" style={{ marginLeft: '10px' }}>
+                  <Button className="button">SignUp</Button>
                 </Link>
               </>
             )}
