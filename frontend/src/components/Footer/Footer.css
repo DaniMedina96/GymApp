@@ -1,0 +1,40 @@
+/* Footer.css */
+.footer {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.footer .MuiBox-root {
+    padding: 20px;
+}
+
+.footer .MuiContainer-root {
+    display: flex;
+    justify-content: center;
+}
+
+.footer .MuiGrid-root {
+    text-align: left;
+}
+
+.footer-header {
+    color: white;
+    font-weight: bold;
+}
+
+.footer-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #ffcc00;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #ff4500;
+    color: white;
+}

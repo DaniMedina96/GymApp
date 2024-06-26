@@ -9,13 +9,14 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import './MiRutina.css';
 
 function MiRutina() {
     const [ejercicios, setEjercicios] = useState([]);
     const [miRutina, setMiRutina] = useState([]);
     const [nombreRutina, setNombreRutina] = useState('');
     const [amateur, setAmateur] = useState(false);
-    const [creador, setCreador] = useState(1); // Puedes ajustar esto según la lógica de tu aplicación
+    const [creador, setCreador] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
@@ -30,6 +31,19 @@ function MiRutina() {
             }
         };
         fetchEjercicios();
+
+        // Obtener el userId del localStorage y establecerlo como creador
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            const parsedUserId = parseInt(userId, 10);
+            if (!isNaN(parsedUserId)) {
+                setCreador(parsedUserId);
+            } else {
+                console.error('Invalid userId in localStorage:', userId);
+            }
+        } else {
+            console.error('No userId found in localStorage');
+        }
     }, []);
 
     const agregarEjercicioARutina = (ejercicio) => {
@@ -47,6 +61,10 @@ function MiRutina() {
             alert('Por favor, añada al menos un ejercicio a la rutina.');
             return;
         }
+        if (creador === null) {
+            alert('No se ha encontrado un usuario válido. Por favor, inicie sesión nuevamente.');
+            return;
+        }
 
         const rutina = {
             nombre: nombreRutina,
@@ -54,6 +72,8 @@ function MiRutina() {
             creador: creador,
             amateur: amateur,
         };
+
+        console.log('Enviando rutina:', rutina); // Log para verificar los datos
 
         setLoading(true);
         try {
@@ -65,6 +85,7 @@ function MiRutina() {
             alert('Rutina creada con éxito!');
         } catch (error) {
             console.error('Error al guardar la rutina:', error);
+            console.log('Datos de la rutina enviados:', rutina); // Registro adicional para depuración
             alert('Error al guardar la rutina, por favor intente de nuevo.');
         } finally {
             setLoading(false);
@@ -72,48 +93,59 @@ function MiRutina() {
     };
 
     return (
-        <Card sx={{ maxWidth: 345, margin: "auto", mt: 3, mb: 3 }}>
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Crear Mi Rutina
-                </Typography>
-                <TextField
-                    label="Nombre de la Rutina"
-                    variant="outlined"
-                    fullWidth
-                    value={nombreRutina}
-                    onChange={(e) => setNombreRutina(e.target.value)}
-                    sx={{ mb: 2 }}
-                />
-                <FormControlLabel
-                    control={<Checkbox checked={amateur} onChange={(e) => setAmateur(e.target.checked)} />}
-                    label="Amateur"
-                />
-                {error && <Typography color="error">{error}</Typography>}
-                {ejercicios.map(ejercicio => (
-                    <Typography key={ejercicio.id} variant="body2" color="text.secondary">
-                        {ejercicio.nombre}
-                        <Button size="small" onClick={() => agregarEjercicioARutina(ejercicio)}>Añadir</Button>
+        <div className="mi-rutina-container">
+            <Card className="mi-rutina-form">
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div" className="mi-rutina-header">
+                        Crear Mi Rutina
                     </Typography>
-                ))}
-            </CardContent>
-            <CardActions>
-                <Button size="small" onClick={guardarRutina} disabled={loading}>
+                    <TextField
+                        label="Nombre de la Rutina"
+                        variant="outlined"
+                        fullWidth
+                        value={nombreRutina}
+                        onChange={(e) => setNombreRutina(e.target.value)}
+                        sx={{ mb: 2 }}
+                    />
+                    <FormControlLabel
+                        control={<Checkbox checked={amateur} onChange={(e) => setAmateur(e.target.checked)} />}
+                        label="Amateur"
+                    />
+                    {error && <Typography color="error">{error}</Typography>}
+                </CardContent>
+            </Card>
+            <Card className="mi-rutina-ejercicios">
+                <CardContent>
+                    {ejercicios.map(ejercicio => (
+                        <div key={ejercicio.id} className="mi-rutina-ejercicio">
+                            <Typography variant="body2" color="text.secondary">
+                                {ejercicio.nombre}
+                            </Typography>
+                            <Button size="small" onClick={() => agregarEjercicioARutina(ejercicio)}>Añadir</Button>
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+            <div className="mi-rutina-actions">
+                <Button size="large" onClick={guardarRutina} disabled={loading}>
                     {loading ? 'Guardando...' : 'Guardar Rutina'}
                 </Button>
-            </CardActions>
-            <CardContent>
-                <Typography variant="h6">
-                    Rutina Actual:
-                </Typography>
-                {miRutina.map((item, index) => (
-                    <Typography key={index} variant="body2" color="text.secondary">
-                        {item.nombre}
+            </div>
+            <Card className="mi-rutina-ejercicios">
+                <CardContent>
+                    <Typography variant="h6">
+                        Rutina Actual:
                     </Typography>
-                ))}
-            </CardContent>
-        </Card>
+                    {miRutina.map((item, index) => (
+                        <Typography key={index} variant="body2" color="text.secondary">
+                            {item.nombre}
+                        </Typography>
+                    ))}
+                </CardContent>
+            </Card>
+        </div>
     );
 }
 
 export default MiRutina;
+
