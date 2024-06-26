@@ -20,7 +20,8 @@ function Login() {
     const formData = { correo, password };
     try {
       const result = await login(formData);
-      localStorage.setItem("userId", result.id);  // Asegúrate de guardar el userId en localStorage
+      console.log(result.result.id);
+      localStorage.setItem("userId", result.result.id);  // Asegúrate de guardar el userId en localStorage
       navigate('/profile');
       console.log(formData);
     } catch (error) {

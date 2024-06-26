@@ -1,0 +1,36 @@
+/* Header.css */
+.header-link {
+    text-decoration: none;
+    color: white;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interior */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    background-color: blue;
+    /* Color de fondo */
+    transition: background-color 0.3s ease;
+    /* Transición suave en el cambio de color */
+    display: inline-block;
+    /* Para que el padding se aplique correctamente */
+}
+
+.header-button {
+    color: white;
+    /* Color del texto */
+    padding: 10px 20px;
+    /* Espaciado interior */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    background-color: blue;
+    /* Color de fondo */
+    transition: background-color 0.3s ease;
+    /* Transición suave en el cambio de color */
+    text-transform: none;
+    /* No transformar el texto */
+}
+
+.header-button:hover {
+    background-color: darkblue;
+    /* Color de fondo al pasar el cursor */
+}
