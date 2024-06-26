@@ -4,7 +4,8 @@ import './userProfile.css';
 const calculateBMI = (weight, height) => {
     return (weight / (height * height)).toFixed(2);
 };
- export default function UserProfile({ user }) {
+
+export default function UserProfile({ user, onEditClick }) {
     return (
         <Container maxWidth="sm">
             <Paper className="paper">
@@ -19,14 +20,14 @@ const calculateBMI = (weight, height) => {
                     <strong>Peso:</strong> {user.peso} kg
                 </Typography>
                 <Typography variant="body1">
-                    <strong>Genero:</strong> {user.genero}
+                    <strong>Género:</strong> {user.genero}
                 </Typography>
                 <Typography variant="body1">
                     <strong>IMC:</strong> {calculateBMI(user.peso, user.altura)}
                 </Typography>
                 <Grid container spacing={2} justifyContent="center">
                     <Grid item>
-                        <Button variant="contained" color="primary" className="button">
+                        <Button variant="contained" color="primary" className="button" onClick={onEditClick}>
                             Editar Datos de Usuario
                         </Button>
                     </Grid>
@@ -40,5 +41,4 @@ const calculateBMI = (weight, height) => {
         </Container>
     );
 }
-
 

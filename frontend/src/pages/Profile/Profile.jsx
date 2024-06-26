@@ -1,14 +1,15 @@
 
-
 import './Profile.css';
-import { getUserProfile, getUser} from '../../services/userService';
+import { getUserProfile, getUser } from '../../services/userService';
 import { useEffect, useState } from 'react';
 import UserProfile from '../../components/UserProfile/userProfile';
+import EditUserProfile from '../../components/EditUserProfile/EditUserProfile'; // Importa el nuevo componente
 
 const Profiles = () => {
-  // Datos ficticios del usuario
-  const [Profile, setProfile] = useState(null);
-const [Usuario,setUsuario] = useState(null);
+  const [profile, setProfile] = useState(null);
+  const [usuario, setUsuario] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -20,8 +21,6 @@ const [Usuario,setUsuario] = useState(null);
     };
 
     fetchProfile();
-
-  
   }, []);
 
   useEffect(() => {
@@ -36,36 +35,47 @@ const [Usuario,setUsuario] = useState(null);
 
     fetchUser();
   }, []);
-let user = {
-    nombre: 'Juan Pérez',
-      altura: 1.75, // en metros
-        peso: 68, // en kilogramos
-          imagenPerfil: 'https://via.placeholder.com/150', // URL de la imagen de perfil
-          genero: 'masculino',
-  };
-  
-console.log(Usuario)
-  if (Profile && Usuario) {
-     user = {
-      nombre: Usuario.nombre,
-      altura: Profile.altura,
-      peso: Profile.peso,
-      imagenPerfil: Profile.imagenPerfil,
-      genero: Profile.genero,
-    };
-}
-  
- 
 
-  // Cálculo del IMC
- 
+  let user = {
+    nombre: 'Juan Pérez',
+    altura: 1.75,
+    peso: 68,
+    imagenPerfil: 'https://via.placeholder.com/150',
+    genero: 'masculino',
+  };
+
+  if (profile && usuario) {
+    user = {
+      nombre: usuario.nombre,
+      altura: profile.altura,
+      peso: profile.peso,
+      imagenPerfil: profile.imagenPerfil,
+      genero: profile.genero,
+    };
+  }
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSave = (updatedUser) => {
+    // Aquí puedes agregar la lógica para guardar los datos actualizados en tu backend
+    console.log("Datos actualizados:", updatedUser);
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+  };
 
   return (
-   <div>
-    {
-<UserProfile user={user} />
-    }
-   </div>
+    <div>
+      {isEditing ? (
+        <EditUserProfile user={user} onSave={handleSave} onCancel={handleCancel} />
+      ) : (
+        <UserProfile user={user} onEditClick={handleEditClick} />
+      )}
+    </div>
   );
 };
 
