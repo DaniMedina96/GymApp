@@ -1,0 +1,43 @@
+.ejercicios-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* Cambiado de center a space-around */
+    gap: 20px;
+    padding: 20px;
+}
+
+.ejercicios-container .MuiCard-root {
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.MuiCardMedia-root {
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+}
+
+.MuiCardContent-root {
+    padding: 16px;
+}
+
+.MuiTypography-h5 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.MuiTypography-body2 {
+    color: #666;
+}
+
+.MuiCardActions-root {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 16px;
+}
+
+.MuiButton-root {
+    text-transform: none;
+}

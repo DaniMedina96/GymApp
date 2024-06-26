@@ -18,6 +18,6 @@ router.get("/", getAllRutinas)
 router.put("/:id", updateOneRutina)
 router.delete("/:id", deleteOneRutina)
 router.post("/:idEjercicio/:idRutina/listaEjercicios/", addEjercicioToRutina)
-//comentairo
+
 
 module.exports = router

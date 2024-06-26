@@ -1,5 +1,6 @@
 const Rutina = require("../models/rutina.model");
 const Ejercicio = require("../models/ejercicio.model");
+const Usuario = require("../models/usuario.model");
 
 const createRutina = async (req, res) => {
   try {
@@ -37,7 +38,7 @@ const getAllRutinas = async (req, res) => {
   try {
     const rutinas = await Rutina.findAll({
       where: req.query,
-      include: [{ model: Ejercicio, as: "ejercicios" }],
+      include: [{ model: Ejercicio, as: "ejercicios" }]
     });
     if (rutinas.length === 0) {
       return res.status(404).json({

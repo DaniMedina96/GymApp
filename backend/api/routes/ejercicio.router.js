@@ -6,7 +6,8 @@ const {
     getOneEjercicio,
     getAllEjercicios,
     updateOneEjercicio,
-    deleteOneEjercicio
+    deleteOneEjercicio,
+    getEjerciciosByUser
 
 
 }
@@ -19,6 +20,7 @@ router.get("/", getAllEjercicios)
 router.put("/:id", updateOneEjercicio)
 router.delete("/:id", deleteOneEjercicio)
 router.post("/:id/rutina", checkAuth, checkAdmin)
+router.get("/ejerciciosUsuario/:idUsuario", getEjerciciosByUser)
 
 
 module.exports = router
