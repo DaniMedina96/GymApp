@@ -1,20 +1,20 @@
-
+import "./EjerciciosCard.css";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-//import CardMedia from '@mui/material/CardMedia';
+import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 
-export default function EjerciciosCard({ejercicioDescripcion, ejercicioNombre, ejercicioImagen}) {
+export default function EjerciciosCard({ ejercicioDescripcion, ejercicioNombre, ejercicioImagen }) {
   return (
-    <Card sx={{ Width: "400px", height: "150px"}}>
-      {/* <CardMedia
+    <Card sx={{ width: 400, height: 300, margin: 2 }}>
+      <CardMedia
         sx={{ height: 140 }}
-        image={ejercicioImagen}
+        image={ejercicioImagen == null ? ejercicioImagen : "https://st4.depositphotos.com/3265223/24936/v/450/depositphotos_249366040-stock-illustration-fitness-gym-logo-with-strong.jpg"}
         title="ejercicioImagen"
-      />  */}
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {ejercicioNombre}
@@ -24,9 +24,10 @@ export default function EjerciciosCard({ejercicioDescripcion, ejercicioNombre, e
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small"><AddIcon/></Button>
+        <Button size="small" startIcon={<AddIcon />}>Add</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
   );
 }
+

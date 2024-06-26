@@ -1,6 +1,9 @@
 const Ejercicio = require("../models/ejercicio.model");
+const Usuario = require("../models/usuario.model");
+const Rutina = require("../models/rutina.model");
 
 const getAllEjercicios = async (req, res) => {
+    console.log("Hola, estoy entrando a la funcion getAllEjercicios");
     try {
         const ejercicios = await Ejercicio.findAll(
             {
@@ -15,7 +18,7 @@ const getAllEjercicios = async (req, res) => {
         }
         ;
         res.status(200).json({
-            message: "All Ejercicio retrieved successfully",
+            message: "All Ejercicios retrieved successfully",
             result: ejercicios
         })
     } catch (error) {
@@ -25,6 +28,83 @@ const getAllEjercicios = async (req, res) => {
         });
     }
 }
+
+const getEjerciciosByUser = async (req, res) => {
+    console.log("Estoy entrando a la funcion getEjerciciosByUser");
+    try {
+        const usuario = await Usuario.findByPk({
+            where: { id: req.params.userId },
+            include: {
+                model: Rutina,
+                through: 'rel_rutina_usuario',
+                include: {
+                    model: Ejercicio,
+                    through: 'rel_rutina_ejercicio',
+                },
+            },
+        });
+        if (usuario) {
+            const ejercicios = usuario.Rutinas.flatMap(rutina => rutina.Ejercicios);
+            if(ejercicios.length === 0) {
+                return res.status(404).json({
+                    message: "El usuario no tiene ejercicios",
+                    result: ejercicios
+                })
+            }else {
+                return res.status(200).json({
+                    message: "Ejercicios retrieved successfully",
+                    result: ejercicios
+                })
+            }
+         
+        } else {
+            return res.status(404).json({
+                message: "El usuario no tiene rutinas o tiene rutina pero est no tiene ejercicios",
+                result: usuario
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            message: "Error al obtener os ejercicios del usuario",
+            result: error
+        });
+    }
+};
+
+// const getEjerciciosByUser = async (req, res) => {
+//     console.log("Estoy entrando a la funcion getEjerciciosByUser");
+//     try {
+       
+//         const usuario = await Usuario.findAll(
+//             {
+//                 where: req.query,
+//                 include: {
+//                     model: Ejercicio ,
+//                     as: 'Ejercicios',
+//                     through: 'rel_ejercicio_usuario',
+                    
+//                 },
+//             })
+//             console.log(usuario)
+
+//         if (usuario.length === 0) {
+//             return res.status(404).json({
+//                 message: "El usuario no tiene ejercicios",
+//                 result: usuario
+//             })
+//         }
+//         res.status(200).json({
+//             message: "Ejercicios retrieved successfully",
+//             result: usuario
+//         })
+//     } catch (error) {
+//         res.status(500).json({
+//             message: "Error al obtener os ejercicios del usuario",
+//             result: error   
+//         })}
+// }
+
+
 
 const getOneEjercicio = async (req, res) => {
     try {
@@ -128,4 +208,5 @@ module.exports = {
     getOneEjercicio,
     getAllEjercicios,
     updateOneEjercicio,
-    deleteOneEjercicio}
+    deleteOneEjercicio,
+    getEjerciciosByUser}

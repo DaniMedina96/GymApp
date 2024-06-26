@@ -28,11 +28,27 @@ const defineRelations = () => {
        foreignKey: "idRutina",
        timestamps: false
      });
+
      Ejercicio.belongsToMany(Rutinas, {
        through: "rel_rutina_ejercicio",
        foreignKey: "idEjercicio",
        timestamps: false
      });
+
+     Ejercicio.belongsToMany(Usuario, {
+       through: "rel_ejercicio_usuario",
+       foreignKey: "idEjercicio",
+       timestamps: false
+     });
+
+     Usuario.belongsToMany(Ejercicio, {
+       through: "rel_ejercicio_usuario",
+       foreignKey: "idUsuario",
+       timestamps: false
+       
+     });
+     
+ 
 
 
     Grupos_musculares.hasMany(Ejercicio, { foreignKey: "grupo_muscular" });
