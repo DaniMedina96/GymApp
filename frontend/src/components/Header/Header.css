@@ -1,36 +1,36 @@
 /* Header.css */
-.header-link {
+.app-bar {
+    background: linear-gradient(135deg, #FF7F50, #FF6347);
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link {
     text-decoration: none;
     color: white;
-    /* Color del texto */
-    padding: 10px 20px;
-    /* Espaciado interior */
-    border-radius: 5px;
-    /* Bordes redondeados */
-    background-color: blue;
-    /* Color de fondo */
-    transition: background-color 0.3s ease;
-    /* Transición suave en el cambio de color */
-    display: inline-block;
-    /* Para que el padding se aplique correctamente */
 }
 
-.header-button {
-    color: white;
+.button {
+    color: #FF6347;
     /* Color del texto */
     padding: 10px 20px;
-    /* Espaciado interior */
     border-radius: 5px;
-    /* Bordes redondeados */
-    background-color: blue;
-    /* Color de fondo */
-    transition: background-color 0.3s ease;
-    /* Transición suave en el cambio de color */
+    background-color: white;
+    transition: background-color 0.3s ease, color 0.3s ease;
     text-transform: none;
-    /* No transformar el texto */
+    font-family: 'Roboto', sans-serif;
 }
 
-.header-button:hover {
-    background-color: darkblue;
-    /* Color de fondo al pasar el cursor */
+.button:hover {
+    background-color: #FFCC00;
+    color: white;
+}
+
+.avatar {
+    margin-left: 16px;
+    cursor: pointer;
+    background-color: #FFCC00;
 }
