@@ -23,7 +23,7 @@ export default function ButtonAppBar() {
 
   return (
     <Box>
-      <AppBar position="static" className="app-bar">
+      <AppBar position="fixed" className="app-bar">
         <Toolbar className="toolbar">
           <SideBar />
           <Link to="/" className="link">

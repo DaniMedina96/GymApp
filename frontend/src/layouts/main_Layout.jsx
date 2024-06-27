@@ -1,17 +1,19 @@
-import { Outlet } from "react-router-dom"
-import Header from "../components/Header/Header"
-import Footer from "../components/Footer/Footer"
-import { Box } from "@mui/material"
-
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
+import { Box } from "@mui/material";
+import "./main_Layout.css";
 
 function Root() {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column',justifyContent: 'space-between', height: '100vh' }}>
-        <Header/>
-        <Outlet/>
-        <Footer/>
+    <Box className="root-container">
+        <Header />
+        <Box className="content">
+          <Outlet />
+        </Box>
+        <Footer />
     </Box>
-  )
+  );
 }
 
-export default Root
+export default Root;
