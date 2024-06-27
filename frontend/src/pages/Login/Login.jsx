@@ -2,6 +2,7 @@ import { Box, TextField, Button } from "@mui/material";
 import { useState } from "react";
 import { login } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
+import './Login.css';
 
 function Login() {
   const [correo, setCorreo] = useState('');
@@ -16,7 +17,8 @@ function Login() {
     setPassword(evento.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const formData = { correo, password };
     try {
       const result = await login(formData);
@@ -31,16 +33,17 @@ function Login() {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: 'center', width: "100%" }}>
-      <h1>Login</h1>
-      <Box sx={{ display: "flex", flexDirection: "column", m: 2, width: "50%" }}>
-        <TextField id="email-login" onChange={handleCorreo} label="Correo" variant="outlined" placeholder="correo@example.com" />
-        <TextField id="password-login" onChange={handlePassword} label="Contraseña" variant="outlined" placeholder="Contraseña" type="password" />
-        <Button onClick={handleSubmit} variant="contained">Continuar</Button>
+    <form onSubmit={handleSubmit}>
+      <Box className="login-container">
+        <h1 className="login-title">Login</h1>
+        <Box className="login-form">
+          <TextField id="email-login" onChange={handleCorreo} label="Correo" variant="outlined" placeholder="correo@example.com" fullWidth />
+          <TextField id="password-login" onChange={handlePassword} label="Contraseña" variant="outlined" placeholder="Contraseña" type="password" fullWidth />
+          <Button type="submit" className="login-button">Continuar</Button>
+        </Box>
       </Box>
-    </Box>
+    </form>
   );
 }
 
 export default Login;
-
