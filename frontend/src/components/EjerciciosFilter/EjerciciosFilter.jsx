@@ -1,6 +1,4 @@
-// src/components/EjerciciosFilter/EjerciciosFilter.js
 import "./EjerciciosFilter.css";
-// src/components/UserExercisesSwitch/UserExercisesSwitch.js
 import React from 'react';
 import { FormControlLabel, Switch } from '@mui/material';
 

@@ -32,8 +32,8 @@ function MiRutina() {
         };
         fetchEjercicios();
 
-        // Obtener el userId del localStorage y establecerlo como creador
-        const userId = localStorage.getItem('userId');
+        // Obtener el idUsuarioLogueado del localStorage y establecerlo como creador
+        const userId = localStorage.getItem('idUsuarioLogueado');
         if (userId) {
             const parsedUserId = parseInt(userId, 10);
             if (!isNaN(parsedUserId)) {
