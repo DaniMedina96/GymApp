@@ -9,6 +9,15 @@ const getAllRutinas = async () => {
     }
 };
 
+const getOneRutina = async (id) => {
+    try {
+        const {data} =  await api.get(`rutina/${id}`);
+        return data.result;
+    } catch (error) {
+        console.log(error);
+    }
+};
 export {
-    getAllRutinas
+    getAllRutinas,
+    getOneRutina
 }

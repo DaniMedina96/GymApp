@@ -52,7 +52,7 @@ const getAllRutinas = async (req, res) => {
   try {
     const rutinas = await Rutina.findAll({
       where: req.query,
-      include: [{ model: Ejercicio, as: "ejercicios" }],
+      include: [{ model: Ejercicio, as: "ejercicios" }, { model: Usuario}],
     });
     if (rutinas.length === 0) {
       return res.status(404).json({
@@ -76,7 +76,7 @@ const getAllRutinas = async (req, res) => {
 const getOneRutina = async (req, res) => {
   try {
     const rutina = await Rutina.findByPk(req.params.id, {
-      include: [{ model: Ejercicio, as: "ejercicios" }],
+      include: [{ model: Ejercicio, as: "ejercicios" },{ model: Usuario}],
     });
     if (!rutina) {
       return res.status(404).json({

@@ -23,8 +23,9 @@ function Rutinas() {
         {rutinas.map((rutina) => (
           <RutinasCard
             key={rutina.id}
+            rutinaId={rutina.id}
             rutinaNombre={rutina.nombre}
-            rutinaCreador={rutina.creador}
+            rutinaCreador={rutina.usuario.nombre}
             rutinaAmateur={rutina.amateur}
           />
         ))}
