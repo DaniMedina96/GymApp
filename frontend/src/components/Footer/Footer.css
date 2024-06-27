@@ -35,6 +35,6 @@
 .footer-bottom {
     text-align: center;
     padding: 10px 0;
-    background-color: #ff4500;
+    background: linear-gradient(135deg, #FF7F50, #FF6347);
     color: white;
 }
