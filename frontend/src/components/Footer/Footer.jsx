@@ -1,15 +1,24 @@
 import "./Footer.css";
 import { Box, Grid, Container, Typography, Link } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 function Footer() {
+  const navigate = useNavigate();
+
   const elements = [
     {
       header: 'Ayuda',
-      links: ['Contacto', 'Soporte']
+      links: [
+        { text: 'Contacto', url: '#' },
+        { text: 'Soporte', url: '#' }
+      ]
     },
     {
       header: 'Cuenta',
-      links: ['Iniciar Sesión', 'Registrarse']
+      links: [
+        { text: 'Iniciar Sesión', url: '/login' },
+        { text: 'Registrarse', url: '/signup' }
+      ]
     }
   ];
 
@@ -23,8 +32,15 @@ function Footer() {
         </Box>
         {column.links.map((link, idx) => (
           <Box key={idx} mb={1}>
-            <Link href="#" className="footer-link">
-              {link}
+            <Link
+              href={link.url}
+              className="footer-link"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate(link.url);
+              }}
+            >
+              {link.text}
             </Link>
           </Box>
         ))}
@@ -41,7 +57,7 @@ function Footer() {
           </Grid>
         </Container>
       </Box>
-      <Box textAlign="center" py={2} bgcolor="#ff4500" color="white">
+      <Box textAlign="center" py={2} className="footer-bottom">
         <Typography variant="body2">
           © GymApp 2024 - Todos los derechos reservados
         </Typography>
@@ -51,4 +67,3 @@ function Footer() {
 }
 
 export default Footer;
-

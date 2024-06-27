@@ -1,3 +1,11 @@
+/* Importando Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+/* Planing.css */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .planing-container {
     display: flex;
     flex-direction: column;
@@ -16,11 +24,24 @@
     margin-bottom: 20px;
     color: #ff4500;
     /* Título en el mismo color que el fondo del footer */
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.planing-title::after {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 5px;
+    background: linear-gradient(135deg, #FF7F50, #FF6347);
+    bottom: 0;
+    left: 25%;
+    border-radius: 2px;
 }
 
 .planing-content {
-    background-color: #ff4500;
-    /* Fondo en el mismo color que el footer-bottom */
+    background: linear-gradient(135deg, #FF7F50, #FF6347);
+    /* Fondo con gradiente */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -31,5 +52,4 @@
     font-size: 1.5rem;
     color: white;
     /* Texto blanco */
-}
 }
