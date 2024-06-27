@@ -29,7 +29,7 @@ const getAllEjercicios = async (req, res) => {
     }
 }
 
-const w = async (req, res) => {
+const getEjerciciosByUser = async (req, res) => {
     console.log("Estoy entrando a la funcion getEjerciciosByUser");
     try {
         const usuario = await Usuario.findByPk({
