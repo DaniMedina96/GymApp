@@ -4,8 +4,13 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 
-export default function RutinasCard({ rutinaCreador, rutinaNombre, RutinaAmateur }) {
+export default function RutinasCard({ rutinaCreador, rutinaNombre, RutinaAmateur, rutinaId }) {
+  const navigate = useNavigate();
+  const showRutina = () => {
+    navigate(`/rutinas/${rutinaId}`);
+  }
   return (
     <Card sx={{ width: 400, height: 200, margin: 2, borderRadius: 2, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>
       <CardContent sx={{ backgroundColor: '#fff', padding: 3 }}>
@@ -23,7 +28,7 @@ export default function RutinasCard({ rutinaCreador, rutinaNombre, RutinaAmateur
         <Button size="small" sx={{ color: '#FF6347' }}>
           <AddIcon />
         </Button>
-        <Button size="small" sx={{ color: '#FF6347' }}>
+        <Button onClick={showRutina} size="small" sx={{ color: '#FF6347' }}>
           Learn More
         </Button>
       </CardActions>
