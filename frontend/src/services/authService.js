@@ -13,7 +13,7 @@ const signUp = async (dataForm) => {
     // Save the token and role in local storage
     localStorage.setItem("token", data.token);
     localStorage.setItem("rol", data.result.rol);
-    localStorage.setItem("userId", data.result.id); // Ensure we use 'userId' consistently
+    localStorage.setItem("idUsuarioLogueado", data.result.id); // Ensure we use 'idUsuariologueado' consistently
 
     // Return the response data
     return data;
@@ -32,7 +32,7 @@ const login = async (dataForm) => {
     // Save the token and role in local storage
     localStorage.setItem("token", data.token);
     localStorage.setItem("rolUsuarioLogueado", data.result.rol);
-    localStorage.setItem("userId", data.result.id); // Ensure we use 'userId' consistently
+    localStorage.setItem("idUsuarioLogueado", data.result.id); // Ensure we use 'idUsuariologueado' consistently
 
     // Return the response data
     return data;

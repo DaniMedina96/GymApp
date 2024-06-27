@@ -1,30 +1,33 @@
 import './Ejercicios.css' 
-import { getAllEjercicios } from '../../services/ejerciciosServices'
+import { getAllEjercicios, getEjerciciosByUser } from '../../services/ejerciciosServices'
 import { useEffect, useState } from 'react'
 import EjerciciosCard from '../../components/EjerciciosCard/EjerciciosCard'
 import EjerciciosFilter from '../../components/EjerciciosFilter/EjerciciosFilter'
+import shadows from '@mui/material/styles/shadows'
 
 
     function Ejercicios() {
         const [ejercicios, setEjercicios] = useState([]);
         const [filteredEjercicios, setFilteredEjercicios] = useState([]);
+        const [showUserEjercicios, setshowUserEjercicios] = useState(false);
 
         useEffect(() => {
             const fetchData = async () => {
-                const [ejerciciosResult] = await Promise.all([getAllEjercicios()]);
+                const ejerciciosResult = await getAllEjercicios();
+                const filteredResult = await getEjerciciosByUser(localStorage.getItem("idUsuarioLogueado"));
                 setEjercicios(ejerciciosResult);
-                setFilteredEjercicios(ejerciciosResult);
+                setFilteredEjercicios(filteredResult);
             };
             fetchData();
         }, []);
 
-        const handleFilterChange = async (userId) => {
-            setSelectedUser(userId);
-            if (userId === '') {
-                setFilteredEjercicios(ejercicios);
+        const handleFilterChange =() => {
+            setshowUserEjercicios(!showUserEjercicios);
+            if (showUserEjercicios) {
+                setEjercicios(filteredEjercicios);
             } else {
-                const filtered = await getEjerciciosByUser(userId);
-                setFilteredEjercicios(filtered);
+                
+                setEjercicios(ejercicios);
             }
         };
 
@@ -33,10 +36,11 @@ import EjerciciosFilter from '../../components/EjerciciosFilter/EjerciciosFilter
   return (
         <div className='ejercicios-container'>
           
-              <EjerciciosFilter
-                  onFilterChange={handleFilterChange}
-              />
-          {filteredEjercicios.map((ejercicio) => (
+              {/* <EjerciciosFilter
+                  onSwitchChange={handleFilterChange}
+                  showUserExercises={showUserEjercicios}
+              /> */}
+          {ejercicios.map((ejercicio) => (
                 <EjerciciosCard
                     key={ejercicio.id}
                     ejercicioNombre={ejercicio.nombre}

@@ -21,7 +21,7 @@ function Login() {
     try {
       const result = await login(formData);
       console.log(result.result.id);
-      localStorage.setItem("userId", result.result.id);  // Asegúrate de guardar el userId en localStorage
+      localStorage.setItem("idUsuarioLogueado", result.result.id);  // Asegúrate de guardar el idUsuarioLogueado en localStorage
       navigate('/profile');
       console.log(formData);
     } catch (error) {

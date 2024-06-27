@@ -30,9 +30,9 @@ const getAllEjercicios = async (req, res) => {
 }
 
 const getEjerciciosByUser = async (req, res) => {
-    console.log("Estoy entrando a la funcion getEjerciciosByUser");
+    console.log("Estoy entrando a la función getEjerciciosByUser");
     try {
-        const usuario = await Usuario.findByPk({
+        const usuario = await Usuario.findOne({
             where: { id: req.params.userId },
             include: {
                 model: Rutina,
@@ -43,33 +43,34 @@ const getEjerciciosByUser = async (req, res) => {
                 },
             },
         });
-        if (usuario) {
+
+        if (usuario && usuario.Rutinas.length > 0) {
             const ejercicios = usuario.Rutinas.flatMap(rutina => rutina.Ejercicios);
-            if(ejercicios.length === 0) {
+            if (ejercicios.length === 0) {
                 return res.status(404).json({
                     message: "El usuario no tiene ejercicios",
                     result: ejercicios
-                })
-            }else {
+                });
+            } else {
                 return res.status(200).json({
                     message: "Ejercicios retrieved successfully",
                     result: ejercicios
-                })
+                });
             }
-         
         } else {
             return res.status(404).json({
-                message: "El usuario no tiene rutinas o tiene rutina pero est no tiene ejercicios",
+                message: "El usuario no tiene rutinas o no tiene ejercicios en las rutinas",
                 result: usuario
             });
         }
     } catch (error) {
-        res.status(500).json({
-            message: "Error al obtener os ejercicios del usuario",
-            result: error
+        return res.status(500).json({
+            message: "Error al obtener los ejercicios del usuario",
+            result: error.message
         });
     }
 };
+
 
 // const getEjerciciosByUser = async (req, res) => {
 //     console.log("Estoy entrando a la funcion getEjerciciosByUser");
