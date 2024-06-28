@@ -13,8 +13,10 @@ const getEjerciciosByUser = async (userId) => {
     // Lógica para obtener los ejercicios por usuario
 
     try {
-        const { data } = await api.get("ejercicios//ejerciciosUsuario/" + userId);
+        const { data } = await api.get("ejercicios/" + userId + "/ejerciciosUsuario/" );
+        console.log(data)
         return data.result;
+
     } catch (error) {
         console.log(error);
     }

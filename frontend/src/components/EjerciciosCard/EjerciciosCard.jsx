@@ -24,8 +24,8 @@ export default function EjerciciosCard({ ejercicioDescripcion, ejercicioNombre, 
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small" startIcon={<AddIcon />}>Add</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small" startIcon={<AddIcon />}>Añadir Ejercicio a rutina</Button>
+        <Button size="small">ver más</Button>
       </CardActions>
     </Card>
   );
