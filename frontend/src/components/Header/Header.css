@@ -1,6 +1,8 @@
 /* Header.css */
 .app-bar {
     background: linear-gradient(135deg, #FF7F50, #FF6347);
+    z-index: 1100;
+    /* Ensure it is above other content */
 }
 
 .toolbar {

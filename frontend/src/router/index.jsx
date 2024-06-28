@@ -8,7 +8,7 @@ import Rutinas from "../pages/Rutinas/Rutinas";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 import Profile from "../pages/Profile/Profile";
-
+import OneRutina from "../pages/OneRutina/OneRutina";
 
 const router = createBrowserRouter(
     [
@@ -28,6 +28,10 @@ const router = createBrowserRouter(
          {
             path: '/rutinas',
             element: <Rutinas/>
+        },
+        {
+            path: '/rutinas/:id',
+            element: <OneRutina/>
         },
          {
             path: '/planing',
@@ -63,6 +67,7 @@ const router = createBrowserRouter(
         //    },
             element: <Profile />,
         },
+        
         
     ]
 
