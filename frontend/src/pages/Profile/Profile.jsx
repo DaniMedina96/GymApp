@@ -37,7 +37,7 @@ const Profiles = () => {
   }, []);
 
   let user = {
-    nombre: 'Juan Pérez',
+    nombre: 'Daniel Medina',
     altura: 1.75,
     peso: 68,
     imagenPerfil: 'https://via.placeholder.com/150',

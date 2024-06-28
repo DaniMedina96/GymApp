@@ -1,0 +1,9 @@
+.rutinas-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #ff4500;
+    /* Título en el mismo color que el fondo del footer */
+    position: relative;
+    padding-bottom: 10px;
+}

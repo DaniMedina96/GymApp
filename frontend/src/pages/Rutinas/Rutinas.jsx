@@ -17,7 +17,7 @@ function Rutinas() {
   console.log(rutinas)
   return (
     <div>
-      <h1>Rutinas</h1>
+      <h1 className='rutinas-title'>Rutinas</h1>
       <MiRutina />
       <div className='rutinas-container'>
         {rutinas.map((rutina) => (
