@@ -73,6 +73,31 @@ const getAllRutinas = async (req, res) => {
   }
 };
 
+const getRutinasByUser = async (req, res) => {
+  try {
+    const rutinas = await Rutina.findAll({
+      where: { creador: req.params.userId },
+      include: [{ model: Ejercicio, as: "ejercicios" }],
+    });
+    if (rutinas.length === 0) {
+      return res.status(404).json({
+        message: "Rutinas not found",
+        result: rutinas,
+      });
+    }
+    res.status(200).json({
+      message: "Rutinas retrieved successfully",
+      result: rutinas,
+    });
+  } catch (error) {
+    console.error("Error getting rutinas by user: ", error);
+    res.status(500).json({
+      message: "Error getting rutinas by user",
+      result: error.message,
+    });
+  }
+};
+
 const getOneRutina = async (req, res) => {
   try {
     const rutina = await Rutina.findByPk(req.params.id, {
@@ -173,6 +198,8 @@ const addEjercicioToRutina = async (req, res) => {
   }
 };
 
+
+
 module.exports = {
   getAllRutinas,
   getOneRutina,
@@ -180,4 +207,5 @@ module.exports = {
   deleteOneRutina,
   createRutina,
   addEjercicioToRutina,
+  getRutinasByUser
 };

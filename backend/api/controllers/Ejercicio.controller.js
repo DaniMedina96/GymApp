@@ -32,44 +32,88 @@ const getAllEjercicios = async (req, res) => {
 const getEjerciciosByUser = async (req, res) => {
     console.log("Estoy entrando a la función getEjerciciosByUser");
     try {
-        const usuario = await Usuario.findOne({
-            where: { id: req.params.userId },
-            include: {
-                model: Rutina,
-                through: 'rel_rutina_usuario',
-                include: {
-                    model: Ejercicio,
-                    through: 'rel_rutina_ejercicio',
-                },
-            },
-        });
+        const usuario = await Usuario.findByPk(req.params.userId);
 
-        if (usuario && usuario.Rutinas.length > 0) {
-            const ejercicios = usuario.Rutinas.flatMap(rutina => rutina.Ejercicios);
-            if (ejercicios.length === 0) {
-                return res.status(404).json({
-                    message: "El usuario no tiene ejercicios",
-                    result: ejercicios
-                });
-            } else {
-                return res.status(200).json({
-                    message: "Ejercicios retrieved successfully",
-                    result: ejercicios
-                });
-            }
-        } else {
+        if (!usuario) {
             return res.status(404).json({
-                message: "El usuario no tiene rutinas o no tiene ejercicios en las rutinas",
-                result: usuario
+                message: "Usuario no encontrado",
+                result: null
             });
         }
+
+        const rutinas = await usuario.getRutinas();
+        let ejerciciosJSON = [];
+
+        for (const rutina of rutinas) {
+            const ejercicios = await rutina.getEjercicios();
+            ejerciciosJSON.push(...ejercicios);  // Agregar ejercicios al array
+        }
+
+        console.log("Ejercicios JSON:", ejerciciosJSON);
+
+        if (ejerciciosJSON.length > 0) {
+            return res.status(200).json({
+                message: "Ejercicios retrieved successfully",
+                result: ejerciciosJSON
+            });
+        } else {
+            return res.status(404).json({
+                message: "El usuario no tiene ejercicios",
+                result: ejerciciosJSON
+            });
+        }
+
     } catch (error) {
+        console.error("Error al obtener los ejercicios del usuario:", error);
         return res.status(500).json({
             message: "Error al obtener los ejercicios del usuario",
             result: error.message
         });
     }
 };
+
+
+// const getEjerciciosByUser = async (req, res) => {
+//     console.log("Estoy entrando a la función getEjerciciosByUser");
+//     try {
+//         const usuario = await Usuario.findOne({
+//             where: { id: req.params.userId },
+//             include: {
+//                 model: Rutina,
+//                 through: 'rel_rutina_usuario',
+//                 include: {
+//                     model: Ejercicio,
+//                     through: 'rel_rutina_ejercicio',
+//                 },
+//             },
+//         });
+
+//         if (usuario && usuario.Rutinas.length > 0) {
+//             const ejercicios = usuario.Rutinas.flatMap(rutina => rutina.Ejercicios);
+//             if (ejercicios.length === 0) {
+//                 return res.status(404).json({
+//                     message: "El usuario no tiene ejercicios",
+//                     result: ejercicios
+//                 });
+//             } else {
+//                 return res.status(200).json({
+//                     message: "Ejercicios retrieved successfully",
+//                     result: ejercicios
+//                 });
+//             }
+//         } else {
+//             return res.status(404).json({
+//                 message: "El usuario no tiene rutinas o no tiene ejercicios en las rutinas",
+//                 result: usuario
+//             });
+//         }
+//     } catch (error) {
+//         return res.status(500).json({
+//             message: "Error al obtener los ejercicios del usuario",
+//             result: error.message
+//         });
+//     }
+// };
 
 
 // const getEjerciciosByUser = async (req, res) => {
@@ -210,4 +254,6 @@ module.exports = {
     getAllEjercicios,
     updateOneEjercicio,
     deleteOneEjercicio,
-    getEjerciciosByUser}
+    getEjerciciosByUser
+
+}
